@@ -1,6 +1,6 @@
 ***************************************------BNF------********************************************************
 
-<Bloque>::- {<ListaDeDeclariciones><ListaDeInstrcciones>}
+<Bloque>::- {<ListaDeDeclariciones><ListaDeInstrucciones><Salto>}
 
 
 **************************Funciones******************************************
@@ -44,19 +44,22 @@
 
 <igual> ::= =
 
+<distinto> ::= <>
+
 
 *****************************Acciones***********************************
 
-<Instruccion> ::= <asignacion>|<retorno>|<impresion>|<null>|<condicion>|<ciclo>|<grupo>|<Instruccion>
+<Instruccion> ::= <asignacion>|<retorno>|<impresion>|<null>|<condicion>|<ciclo>|<grupo>|<Instruccion><Instruccion>
 
-<Salto>::- \n
+<Salto>::- ;
 
 <SentenciasImpresion>::- IMPRIMIR<ListaImpresion>
 
+<leer>:: LEER<variable>|LEER<Textos>
 
 ****************************Estructuras*********************************************
 
-<EstructuraCondicional>::- si <Expresion> entonces <Instruccion> finsi | si <Expresion> entonces <Instruccion> sino <Instruccion> finsi
+<EstructuraCondicional>::- si (<Expresion>) entonces <Instruccion> finsi | si (<Expresion>) entonces <Instruccion> sino <Instruccion> finsi
 
 <EstructuraDeIteracion> mientras <Expresion> hacer <Instruccion> realizado
 
@@ -66,12 +69,12 @@
 
 <ListaDeDeclaraciones>::- <Declaracion><ListaDeDeclaraciones> 
 
-<Declaracion>::- variable<Variables>
+<Declaracion>::- variable<Variables><Variables>
 
 
 *****************************Uso de expresiones *******************************************
 
-<Expresion> ::= <expresion><Operadores><Expresion>| <igual><expresion>|(<expresion>)|<NumeroEntero>|<TipoVariable>|<TipoVariabe>(<Arguementos>)
+<Expresion> ::= <expresion><Operadores><Expresion>| <igual><expresion>|(<expresion>)|<NumeroEntero>|<TipoVariable>|<TipoVariabe>(<Arguementos>)|<distinto><expresion>
 
 <ListaExpresiones>::- <Expresion>|<Expresion>,<ListaExpresiones>
 
@@ -84,3 +87,5 @@
 <FuncionDeRetorno>::- retornar<Expresion>
 
 <FuncionNula>::- continuar
+
+<Retortar>::- RETORNAR<variable>|RETORNAR<Textos>

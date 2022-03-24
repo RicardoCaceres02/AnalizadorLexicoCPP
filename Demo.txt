@@ -1,0 +1,34 @@
+
+master(){
+    declarando();
+    leerAlgo();
+    funcioSeleccion();
+    funcionIteracion();
+    impresion();
+}
+
+declarando(){
+    variable C CadenaMixta;
+}
+
+leerAlgo(C){
+    LEER C;
+}
+
+funcioSeleccion(){
+    si(C="Adios")entones{
+        RETORNAR "Hola";
+    }sino{
+        RETORNAR "Adios";
+        }finsi
+}
+
+funcionIteracion(C){
+    mientras(C<>"Hola")hacer{
+        RETORNAR "Adiós";
+    }realizado;
+}
+
+impresion(C){
+IMPRIMIR C;
+}
