@@ -1,0 +1,40 @@
+***************************************------BNF------********************************************************
+
+<Codigo>  ::= <Funciones>
+<Funciones> ::= <Funcion>|<Funciones><Funcion>
+<Funcion> :: = funcion <TipoVariable>(<Parametros>)<Instruccion>
+<Parametros> ::= <Varibles>
+<Variables> ::= <TipoVariable>|<Variables>,<TipoVariable>
+<TipoVariable> ::= <Letra>|<TipoVariable><CadenaMixta>
+<CadenaMixta> ::= <letra>|<Numero>
+<Letra> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|ñ|o|p|q|r|s|t|u|v|w|x|y|z|
+        A|B|C|D|E|F|G|H|I|J|K|L|M|N|ñ|O|P|Q|R|S|T|U|V|W|X|Y|Z
+<Numero> ::= 0|1|2|3|4|5|6|7|8|9
+******************************************************************************************
+<Instruccion> ::= <asignacion>|<retorno>|<impresion>|<null>|<condicion>|<ciclo>|<grupo>
+<asignación> ::= <tipoVariable> := <Expresion>
+<Expresion> ::= <expresion><Operadores><Expresion>| <igual><expresion>
+|(<expresion>)|<NumeroEntero>|<TipoVariable>|<TipoVariabe>(<Arguementos>)
+<Operadores> ::= +|-|*|/|
+<igual> ::= =
+<NumeroEntero> ::= <Numero>|<NumeroEntero><Numero>
+
+******************************************************************************************
+<Arguemtos> ::= <ListaExpresiones>
+<ListaExpresiones>::- <Expresion>|<Expresion>,<ListaExpresiones>
+<SentenciasImpresion>::- IMPRIMIR<ListaImpresion>
+<ListaImpresion>::- <ElementosImpresion>|<ListaImpresion>,<ElemImpresion>
+<ElemImpresion>::- <Expresion>|”<Textos>”
+<Textos>::-  <Carácter>|<Carácter><Textos>
+<Carácter>::- <CaracterPosible>|<Salto>
+<CaracterPosible>::- “Cualquier Carácter”
+<Salto>::- \n
+<FuncionDeRetorno>::- retornar<Expresion>
+<FuncionNula>::- continuar
+<EstructuraCondicional>::- si <Expresion> entonces <Instruccion> finsi | si <Expresion> entonces <Instruccion> sino <Instruccion> finsi
+<EstructuraDeIteracion> mientras <Expresion> hacer <Instruccion> realizado
+<Bloque>::- {<ListaDeDeclariciones><ListaDeInstrcciones>}
+<ListaDeDeclaraciones>::- <Declaracion><ListaDeDeclaraciones> 
+<Declaracion>::- variable<Variables>
+<ListaDeInstrucciones>::- <Instruccion> | <ListaDeInstruccines><Instrucción>
+
