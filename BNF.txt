@@ -1,91 +1,80 @@
 ***************************************------BNF------********************************************************
-
-<Bloque>::- {<ListaDeDeclariciones><ListaDeInstrucciones><Salto>}
-
-
 **************************Funciones******************************************
 
-<ListaDeInstrucciones>::- <Instruccion> | <ListaDeInstruccines><Instrucción>
-
 <Codigo>  ::= <Funciones>
-
 <Funciones> ::= <Funcion>|<Funciones><Funcion>
+<Funcion> :: = funcion <TipoVariable>(<Parametros>)<Bloque>
+<Parametros> ::= <Varibles>|<cadena>|<NumeroEntero>|<flotante>|<Parametros>,<Parametros>
+<Bloque> ::- {<ListaDeDeclariciones>|<ListaDeInstrucciones>|<Funciones>|<ListaDeDeclariciones><ListaDeInstrucciones><Funciones><Salto>}
 
-<Funcion> :: = funcion <TipoVariable>(<Parametros>)<ListaDeInstrucciones>
-
-<Parametros> ::= <Varibles>
-
-
-
-*****************************Tipos de Variables*****************************************
-<Variables> ::= <TipoVariable>|<Variables>,<TipoVariable>
-
-<TipoVariable> ::= <Letra>|<TipoVariable><CadenaMixta>
-
-<NumeroEntero> ::= <Numero>|<NumeroEntero><Numero>
-
-<CadenaMixta> ::= <letra>|<Numero>
-
-<Textos>::-  <Carácter>|<Carácter><Textos>
-
-<Carácter>::- <CaracterPosible>|<Salto>
-
-<CaracterPosible>::- “Cualquier Carácter”
-
-
-*****************************Definiciones Simples************************
-
-<Letra> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|ñ|o|p|q|r|s|t|u|v|w|x|y|z|
-        A|B|C|D|E|F|G|H|I|J|K|L|M|N|ñ|O|P|Q|R|S|T|U|V|W|X|Y|Z
-
-<Numero> ::= 0|1|2|3|4|5|6|7|8|9
-
-<Operadores> ::= +|-|*|/|
-
-<igual> ::= =
-
-<distinto> ::= <>
 
 
 *****************************Acciones***********************************
 
-<Instruccion> ::= <asignacion>|<retorno>|<impresion>|<null>|<condicion>|<ciclo>|<grupo>|<Instruccion><Instruccion>
 
-<Salto>::- ;
 
 <SentenciasImpresion>::- IMPRIMIR<ListaImpresion>
+<leer>:: Leer(<variable>)<Salto>|Leer(<CadenaMixta>)<Salto>
+<asignación> ::= <tipoVariable> = <Expresion><Salto>
 
-<leer>:: LEER<variable>|LEER<Textos>
+<Salto> ::- ;
 
-****************************Estructuras*********************************************
-
-<EstructuraCondicional>::- si (<Expresion>) entonces <Instruccion> finsi | si (<Expresion>) entonces <Instruccion> sino <Instruccion> finsi
-
-<EstructuraDeIteracion> mientras <Expresion> hacer <Instruccion> realizado
-
-
-************************************Declaraciones************************************
-<asignación> ::= <tipoVariable> := <Expresion>
-
-<ListaDeDeclaraciones>::- <Declaracion><ListaDeDeclaraciones> 
-
-<Declaracion>::- variable<Variables><Variables>
+*****************************Instrucciones***********************************
+<ListaDeInstrucciones>::- <Instruccion> | <ListaDeInstruccines><Instrucción>
+<Instruccion> ::= <asignacion>|<impresion>|<null>|<ciclo>|<condicion>|<Instruccion><Instruccion>
 
 
 *****************************Uso de expresiones *******************************************
 
+
+<Arguentos> ::= <ListaExpresiones>
+<ListaExpresiones>::- <Expresion>|<Expresion>,<ListaExpresiones>
 <Expresion> ::= <expresion><Operadores><Expresion>| <igual><expresion>|(<expresion>)|<NumeroEntero>|<TipoVariable>|<TipoVariabe>(<Arguementos>)|<distinto><expresion>
 
-<ListaExpresiones>::- <Expresion>|<Expresion>,<ListaExpresiones>
-
 <ListaImpresion>::- <ElementosImpresion>|<ListaImpresion>,<ElemImpresion>
-
 <ElemImpresion>::- <Expresion>|”<Textos>”
 
-<Arguemtos> ::= <ListaExpresiones>
 
-<FuncionDeRetorno>::- retornar<Expresion>
 
-<FuncionNula>::- continuar
+****************************Estructuras*********************************************
+<ciclo> ::= <EstructuraDeIteracion>
+<condicion> ::= <EstructuraCondicional>
 
-<Retortar>::- RETORNAR<variable>|RETORNAR<Textos>
+<EstructuraCondicional> ::= si (<Expresion>) entonces <Instruccion> finsi <Salto>| si (<Expresion>) entonces <Instruccion> sino <Instruccion> finsi<Salto>
+<EstructuraDeIteracion> ::= mientras <Expresion> hacer <Instruccion> realizado <Salto>
+
+
+
+*****************************definicion de Variables*****************************************
+
+<ListaDeDeclaraciones>::= <ListaDeDeclaraciones> <Declaracion>
+<Declaracion>::- <ComVariables><Salto>
+<ComVariables> ::= <DefCadena>|<DefEntero>|<DefFlotante>
+<DefCadena> ::= cadena <nombre> 
+<DefEntero> ::=	entero <nombre> 
+<DefFlotante> ::= flotante <nombre> 
+
+
+*****************************Tipos de Variables*****************************************
+<Variables> ::= <TipoVariable>|<Variables>,<TipoVariable>
+<TipoVariable> ::= <Letra>|<TipoVariable><CadenaMixta>
+<NumeroEntero> ::= <Numero>
+<flotante> ::= <numero>.<numero>|<signo><numero>.<numero>
+<cadena> ::= "<CadenaMixta>"
+<booleano> ::= 1|0
+--------
+<CaracterPosible>::- “Cualquier Carácter”
+<Carácter>::- <CaracterPosible>|<Salto>
+<Textos>::-  <Carácter>|<Carácter><Textos>
+
+*****************************Definiciones Simples************************
+
+<CadenaMixta> ::= <letra>|<Numero>|<CadenaMixta><letra>|<CadenaMixta><numero>
+<numero> ::= <digito>|<signo><digito>|<numero><digito>
+<Letra> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|ñ|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|ñ|O|P|Q|R|S|T|U|V|W|X|Y|Z
+<digito> ::= 0|1|2|3|4|5|6|7|8|9
+<Operadores> ::= +|-|*|/|
+<igual> ::= =
+<distinto> ::= <>
+<condiciones> ::= |>|>=|=|<|<=
+<signos> ::= "+"|"-"
