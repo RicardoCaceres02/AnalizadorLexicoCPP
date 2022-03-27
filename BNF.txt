@@ -62,7 +62,7 @@
 <flotante> ::= <numero>.<numero>|<signo><numero>.<numero>
 <cadena> ::= "<CadenaMixta>"
 <booleano> ::= 1|0
---------
+------ --
 <CaracterPosible>::- “Cualquier Carácter”
 <Carácter>::- <CaracterPosible>|<Salto>
 <Textos>::-  <Carácter>|<Carácter><Textos>
@@ -77,4 +77,4 @@
 <igual> ::= =
 <distinto> ::= <>
 <condiciones> ::= |>|>=|=|<|<=
-<signos> ::= "+"|"-"
+<signos> ::= "+"|"-"  
