@@ -1,34 +1,50 @@
-
-master(){
-    declarando();
-    leerAlgo();
-    funcioSeleccion();
-    funcionIteracion();
-    impresion();
+FuncionLeer(Variable1,Variable2){
+	Leer(Variable1);
+	Leer(Variable2);
 }
 
-declarando(){
-    variable C CadenaMixta;
+FuncionSuma(Variable1,Variable2){
+	SumaNumero = Variable1+Variable2;	
 }
 
-leerAlgo(C){
-    LEER C;
+
+
+FuncionVerificar(Variable1,Variable2){
+	
+	si(SumaNumero<50) entonces{
+		si (Variable1<Variable2) entonces{
+			Variable1 = Variable1+1;
+		}sino{
+			Variable2 = Variable2+1;	
+		}finsi;
+		SumaNumero = Variable1+Variable2 ;
+		FuncionVerificar(Variable1,Variable2);
+	};
+		
+	imprimir("la suma de los dos numeros es igual a: ",SumaNumero);
+
 }
 
-funcioSeleccion(){
-    si(C="Adios")entones{
-        RETORNAR "Hola";
-    }sino{
-        RETORNAR "Adios";
-        }finsi
+FuncionCalculo(Variable1,Variable2){
+	meintras(SumaNumero<50) hacer{
+		Variable1 = Variable1+1;
+		Variable2 = Variable2+1;
+		SumaNumero = Variable1+Variable2 ;	
+	}Realizado;
+	imprimir("la suma de los dos numeros es igual a: ",SumaNumero);
 }
 
-funcionIteracion(C){
-    mientras(C<>"Hola")hacer{
-        RETORNAR "Adiós";
-    }realizado;
+FuncionPrincipal{
+	entero Variable1;
+	entero Variable2;
+	entero SumaNumero;
+	 	
+	FuncionLeer(Variable1,Variable2);
+	FuncionVerificar(Variable1,Variable2);
+	
+	FuncionLeer(Variable1,Variable2);
+	FuncionCalculo(Variable1,Variable2);
 }
 
-impresion(C){
-IMPRIMIR C;
-}
+
+
