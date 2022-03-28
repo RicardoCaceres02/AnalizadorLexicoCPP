@@ -1,7 +1,11 @@
 ***************************************------BNF------********************************************************
+************************** Estructura general ******************************************
+<Codigo>  ::= <Estructura>
+<Estructura> ::= <Funciones><General>
+
 **************************Funciones******************************************
 
-<Codigo>  ::= <Funciones>
+
 <Funciones> ::= <Funcion>|<Funciones><Funcion>
 <Funcion> :: = funcion <TipoVariable>(<Parametros>)<Bloque>
 <Parametros> ::= <Varibles>|<cadena>|<NumeroEntero>|<flotante>|<Parametros>,<Parametros>
@@ -10,9 +14,6 @@
 
 
 *****************************Acciones***********************************
-
-
-
 <SentenciasImpresion>::- IMPRIMIR<ListaImpresion>
 <leer>:: Leer(<variable>)<Salto>|Leer(<CadenaMixta>)<Salto>
 <asignación> ::= <tipoVariable> = <Expresion><Salto>
@@ -21,7 +22,7 @@
 
 *****************************Instrucciones***********************************
 <ListaDeInstrucciones>::- <Instruccion> | <ListaDeInstruccines><Instrucción>
-<Instruccion> ::= <asignacion>|<impresion>|<null>|<ciclo>|<condicion>|<Instruccion><Instruccion>
+<Instruccion> ::= <asignacion>|<impresion>|<calculos>|<ciclo>|<condicion>|<Instruccion><Instruccion>
 
 
 *****************************Uso de expresiones *******************************************
@@ -29,20 +30,23 @@
 
 <Arguentos> ::= <ListaExpresiones>
 <ListaExpresiones>::- <Expresion>|<Expresion>,<ListaExpresiones>
-<Expresion> ::= <expresion><Operadores><Expresion>| <igual><expresion>|(<expresion>)|<NumeroEntero>|<TipoVariable>|<TipoVariabe>(<Arguementos>)|<distinto><expresion>
+<Expresion> ::=  <TipoNumeros><condiciones><TipoNumeros>|<TipoVariable><condiciones><TipoNumeros>|<TipoNumero><condiciones><TipoVariable>|<TipoVariable><condiciones><TipoVariable>|<Expresion> y <Expresion>|<Expresion> o <Expresion>
 
 <ListaImpresion>::- <ElementosImpresion>|<ListaImpresion>,<ElemImpresion>
 <ElemImpresion>::- <Expresion>|”<Textos>”
 
 
-
 ****************************Estructuras*********************************************
+
+
 <ciclo> ::= <EstructuraDeIteracion>
 <condicion> ::= <EstructuraCondicional>
 
-<EstructuraCondicional> ::= si (<Expresion>) entonces <Instruccion> finsi <Salto>| si (<Expresion>) entonces <Instruccion> sino <Instruccion> finsi<Salto>
-<EstructuraDeIteracion> ::= mientras <Expresion> hacer <Instruccion> realizado <Salto>
+<EstructuraCondicional> ::= si (<Expresion>) entonces <Instruccion> finsi <Salto>| si (<Expresion>) entonces {<Instruccion>} sino {<Instruccion>} finsi <Salto>
+<EstructuraDeIteracion> ::= mientras (<Expresion>) hacer {<Instruccion>} realizado <Salto>
 
+<calculos> ::= <OperacionesBasicas>
+<OperacionesBasicas> ::= <TipoNumeros><Operadores><TipoNumeros>|<TipoVariable><Operadores><TipoVariable>|<OperacionesBasicas><operadores><TipoNumeros>| <OperacionesBasicas><Operadores><TipoVariable>|<OperacionesBasicas><Operadores><OperacionesBasicas>
 
 
 *****************************definicion de Variables*****************************************
@@ -57,16 +61,15 @@
 
 *****************************Tipos de Variables*****************************************
 <Variables> ::= <TipoVariable>|<Variables>,<TipoVariable>
-<TipoVariable> ::= <Letra>|<TipoVariable><CadenaMixta>
+<TipoVariable> ::= <CadenaMixta>|<TipoVariable><CadenaMixta>
+<TipoNumeros> ::= <NumeroEntero>|<flotante>
 <NumeroEntero> ::= <Numero>
 <flotante> ::= <numero>.<numero>|<signo><numero>.<numero>
 <cadena> ::= "<CadenaMixta>"
-<booleano> ::= 1|0
+
 ------ --
 <CaracterPosible>::- “Cualquier Carácter”
 <Carácter>::- <CaracterPosible>|<Salto>
-<Textos>::-  <Carácter>|<Carácter><Textos>
-
 *****************************Definiciones Simples************************
 
 <CadenaMixta> ::= <letra>|<Numero>|<CadenaMixta><letra>|<CadenaMixta><numero>

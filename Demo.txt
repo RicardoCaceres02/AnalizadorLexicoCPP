@@ -10,7 +10,7 @@ FuncionSuma(Variable1,Variable2){
 
 
 FuncionVerificar(Variable1,Variable2){
-	
+
 	si(SumaNumero<50) entonces{
 		si (Variable1<Variable2) entonces{
 			Variable1 = Variable1+1;
@@ -26,6 +26,7 @@ FuncionVerificar(Variable1,Variable2){
 }
 
 FuncionCalculo(Variable1,Variable2){
+	
 	meintras(SumaNumero<50) hacer{
 		Variable1 = Variable1+1;
 		Variable2 = Variable2+1;
@@ -33,6 +34,8 @@ FuncionCalculo(Variable1,Variable2){
 	}Realizado;
 	imprimir("la suma de los dos numeros es igual a: ",SumaNumero);
 }   
+
+
 
 FuncionPrincipal{
 	entero Variable1;
