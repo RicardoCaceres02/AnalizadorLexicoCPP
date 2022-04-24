@@ -1,0 +1,29 @@
+INICIO
+	FUNCION Iniciar()
+		
+		CADENA cadena1 = "prueba"
+		ENTERO entero1 = 0
+		FLOTANTE pruebaf = 0.0
+		BOOLEAN pruebaB = FALSO;
+		
+		SI pruebaB == FALSO) ENTONCES
+			
+			
+			entero1 = 120
+			pruebaf = 110
+			pruebaB = VERDADERO
+		FIN
+		
+		MIENTRAS (pruebaB  == VERDADERO) HACER
+			entero1 = entero1 - pruebaf 
+
+			SI (entero1 <= 0) ENTONCES
+				pruebaB = FALSO;
+			FIN
+		FIN
+
+		IMPRIMIR "Final de codigo"
+
+		RETORNAR 0;
+	FIN
+FINAL
